@@ -32,8 +32,6 @@
  )
 
 ;; magit
-(require 'magithub)
-(magithub-feature-autoinject t)
 (global-set-key (kbd "C-x g") 'magit-status)
 
 ;; ivy-counsel-swiper
