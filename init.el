@@ -34,6 +34,7 @@
 ;; magit
 (require 'magit)
 (global-set-key (kbd "C-x g") 'magit-status)
+(global-magit-file-mode)
 
 ;; ivy-counsel-swiper
 (global-set-key (kbd "C-s") 'swiper)
