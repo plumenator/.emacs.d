@@ -16,7 +16,6 @@
    (quote
     ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(inhibit-startup-screen t)
- '(ivy-mode t)
  '(menu-bar-mode nil)
  '(package-archives
    (quote
@@ -49,6 +48,8 @@
 (global-magit-file-mode)
 
 ;; ivy-counsel-swiper
+(require 'ivy)
+(ivy-mode 1)
 (global-set-key (kbd "C-s") 'swiper)
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
