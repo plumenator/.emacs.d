@@ -25,8 +25,7 @@
  '(package-selected-packages
    (quote
     (magithub git-timemachine browse-at-remote use-package better-defaults which-key magit counsel swiper ivy)))
- '(tool-bar-mode nil)
- '(windmove-wrap-around t))
+ '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -69,6 +68,7 @@
 (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
 
 ;; windmove
+(setq-default windmove-wrap-around t)
 (global-set-key (kbd "S-<left>")  'windmove-left)
 (global-set-key (kbd "S-<right>") 'windmove-right)
 (global-set-key (kbd "S-<up>")    'windmove-up)
