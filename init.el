@@ -31,6 +31,14 @@
  ;; If there is more than one, they won't work right.
  )
 
+;; https://github.com/technomancy/better-defaults
+(require 'better-defaults)
+;; save-place (as used by better-defaults is now replaced by
+;; save-place-mode
+(if (fboundp #'save-place-mode)
+  (save-place-mode +1)
+  (setq-default save-place t))
+
 ;; magit
 (require 'magit)
 (global-set-key (kbd "C-x g") 'magit-status)
