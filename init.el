@@ -96,5 +96,9 @@
 (when (boundp 'w32-pipe-buffer-size)
   (setq irony-server-w32-pipe-buffer-size (* 64 1024)))
 
+;; intero-mode for haskell
+(require 'intero)
+(add-hook 'haskell-mode-hook 'intero-mode)
+
 (provide 'init)
 ;;; init.el ends here
