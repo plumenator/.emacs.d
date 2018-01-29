@@ -33,6 +33,11 @@
  ;; If there is more than one, they won't work right.
  )
 
+;; pick the exec path from env
+(require 'exec-path-from-shell)
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
 ;; https://github.com/technomancy/better-defaults
 (require 'better-defaults)
 ;; save-place (as used by better-defaults is now replaced by
