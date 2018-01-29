@@ -16,6 +16,7 @@
    (quote
     ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(inhibit-startup-screen t)
+ '(magit-repository-directories (quote (("~/work" . 1) ("~" . 1))))
  '(menu-bar-mode nil)
  '(ns-command-modifier (quote meta))
  '(package-archives
