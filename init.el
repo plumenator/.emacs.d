@@ -41,6 +41,10 @@
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
+;; which-key-mode
+(require 'which-key)
+(which-key-mode 1)
+
 ;; https://github.com/technomancy/better-defaults
 (require 'better-defaults)
 ;; save-place (as used by better-defaults is now replaced by
