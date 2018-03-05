@@ -10,13 +10,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(compilation-scroll-output (quote first-error))
  '(counsel-mode t)
  '(custom-enabled-themes (quote (solarized-light)))
  '(custom-safe-themes
    (quote
     ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(inhibit-startup-screen t)
- '(magit-repository-directories (quote (("~/work" . 1) ("~" . 1))))
+ '(magit-repository-directories (quote (("~" . 2))))
  '(menu-bar-mode nil)
  '(ns-alternate-modifier (quote none))
  '(ns-command-modifier (quote meta))
