@@ -40,7 +40,7 @@
 
 ;; pick the exec path from env
 (require 'exec-path-from-shell)
-(when (memq window-system '(mac ns x))
+(when (string= window-system "ns")
   (exec-path-from-shell-initialize))
 
 ;; which-key-mode
