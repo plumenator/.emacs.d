@@ -121,7 +121,9 @@
 (add-hook 'racer-mode-hook #'eldoc-mode)
 (add-hook 'racer-mode-hook #'company-mode)
 
-(provide 'init)
-;;; init.el ends here
+;; enable advanced functions
 (put 'narrow-to-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+
+(provide 'init)
+;;; init.el ends here
