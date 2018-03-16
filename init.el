@@ -29,6 +29,7 @@
  '(package-selected-packages
    (quote
     (smex intero haskell-mode lsp-rust rust-playground yasnippet company-racer ivy-hydra exec-path-from-shell cargo flycheck-rust racer rust-mode git-wip-timemachine magithub git-timemachine browse-at-remote use-package better-defaults which-key magit counsel swiper ivy)))
+ '(rust-rustfmt-bin "rustfmt")
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
