@@ -130,5 +130,9 @@
 (put 'narrow-to-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
+;; protobuf
+(require 'protobuf-mode)
+(add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
+
 (provide 'init)
 ;;; init.el ends here
