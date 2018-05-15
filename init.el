@@ -38,6 +38,9 @@
  ;; If there is more than one, they won't work right.
  )
 
+;; load-path
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+
 ;; pick the exec path from env
 (require 'exec-path-from-shell)
 (when (string= window-system "ns")
