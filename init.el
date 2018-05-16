@@ -125,6 +125,7 @@
 (add-hook 'racer-mode-hook #'eldoc-mode)
 (add-hook 'racer-mode-hook #'company-mode)
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+(add-hook 'rust-mode-hook #'linum-mode)
 
 ;; enable advanced functions
 (put 'narrow-to-region 'disabled nil)
