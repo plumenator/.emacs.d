@@ -93,6 +93,9 @@
 (global-set-key (kbd "S-<up>")    'windmove-up)
 (global-set-key (kbd "S-<down>")  'windmove-down)
 
+;; undo for windows
+(winner-mode 1)
+
 ;; irony-mode (c++, libclang)
 (add-hook 'c++-mode-hook 'irony-mode)
 (add-hook 'c-mode-hook 'irony-mode)
