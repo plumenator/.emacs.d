@@ -28,7 +28,7 @@
  '(package-enable-at-startup nil)
  '(package-selected-packages
    (quote
-    (rotate editorconfig solarized-theme smex intero haskell-mode lsp-rust rust-playground yasnippet company-racer ivy-hydra exec-path-from-shell cargo flycheck-rust racer rust-mode git-wip-timemachine git-timemachine browse-at-remote use-package better-defaults which-key magit counsel swiper ivy)))
+    (smartparens rotate editorconfig solarized-theme smex intero haskell-mode lsp-rust rust-playground yasnippet company-racer ivy-hydra exec-path-from-shell cargo flycheck-rust racer rust-mode git-wip-timemachine git-timemachine browse-at-remote use-package better-defaults which-key magit counsel swiper ivy)))
  '(rust-format-on-save t)
  '(rust-rustfmt-bin "rustfmt")
  '(tool-bar-mode nil))
