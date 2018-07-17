@@ -70,6 +70,7 @@
 (require 'ivy)
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)        ; switch to buffers of files visited in a previous session
+(global-set-key (kbd "C-x b") 'ivy-switch-buffer)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (require 'swiper)
 (global-set-key (kbd "C-s") 'swiper)
