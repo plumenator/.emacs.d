@@ -57,6 +57,8 @@
 (if (fboundp #'save-place-mode)
   (save-place-mode +1)
   (setq-default save-place t))
+;; disable ido-mode (better-defaults enables it, unfortunately)
+(ido-mode -1)
 
 ;; magit
 (require 'magit)
@@ -69,7 +71,6 @@
 (require 'ivy)
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)        ; switch to buffers of files visited in a previous session
-(global-set-key (kbd "C-x b") 'ivy-switch-buffer)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (require 'swiper)
 (global-set-key (kbd "C-s") 'counsel-grep-or-swiper)
