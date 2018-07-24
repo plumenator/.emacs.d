@@ -27,10 +27,11 @@
  '(package-enable-at-startup nil)
  '(package-selected-packages
    (quote
-    (magit-todos smartparens rotate editorconfig solarized-theme smex intero haskell-mode lsp-rust rust-playground yasnippet company-racer ivy-hydra exec-path-from-shell cargo flycheck-rust racer rust-mode git-wip-timemachine git-timemachine browse-at-remote use-package better-defaults which-key magit counsel swiper ivy)))
+    (cider magit-todos smartparens rotate editorconfig solarized-theme smex intero haskell-mode lsp-rust rust-playground yasnippet company-racer ivy-hydra exec-path-from-shell cargo flycheck-rust racer rust-mode git-wip-timemachine git-timemachine browse-at-remote use-package better-defaults which-key magit counsel swiper ivy)))
  '(rust-format-on-save t)
  '(rust-rustfmt-bin "rustfmt")
- '(tool-bar-mode nil))
+ '(tool-bar-mode nil)
+ '(tramp-syntax (quote default) nil (tramp)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
