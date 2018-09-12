@@ -27,7 +27,7 @@
  '(package-enable-at-startup nil)
  '(package-selected-packages
    (quote
-    (json-mode nix-mode cider magit-todos smartparens rotate editorconfig solarized-theme smex intero haskell-mode lsp-rust rust-playground yasnippet company-racer ivy-hydra exec-path-from-shell cargo flycheck-rust racer rust-mode git-wip-timemachine git-timemachine browse-at-remote use-package better-defaults which-key magit counsel swiper ivy)))
+    (yaml-mode clang-format json-mode nix-mode cider magit-todos smartparens rotate editorconfig solarized-theme smex intero haskell-mode lsp-rust rust-playground yasnippet company-racer ivy-hydra exec-path-from-shell cargo flycheck-rust racer rust-mode git-wip-timemachine git-timemachine browse-at-remote use-package better-defaults which-key magit counsel swiper ivy)))
  '(rust-format-on-save t)
  '(rust-rustfmt-bin "rustfmt")
  '(tool-bar-mode nil)
@@ -144,7 +144,9 @@
 ;; protobuf
 (require 'protobuf-mode)
 (add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
-
+(require 'clang-format)
+(add-hook 'protobug-mode-hook
+          (lambda () (add-hook 'before-save-hook clang-format-buffer nil 'local)))
 ;; nix
 (require 'nix-mode)
 (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-mode))
