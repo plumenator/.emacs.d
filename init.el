@@ -27,7 +27,7 @@
  '(package-enable-at-startup nil)
  '(package-selected-packages
    (quote
-    (yaml-mode clang-format json-mode nix-mode cider magit-todos smartparens rotate editorconfig solarized-theme smex intero haskell-mode lsp-rust rust-playground yasnippet company-racer ivy-hydra exec-path-from-shell cargo flycheck-rust racer rust-mode git-wip-timemachine git-timemachine browse-at-remote use-package better-defaults which-key magit counsel swiper ivy)))
+    (feature-mode yaml-mode clang-format json-mode nix-mode cider magit-todos smartparens rotate editorconfig solarized-theme smex intero haskell-mode lsp-rust rust-playground yasnippet company-racer ivy-hydra exec-path-from-shell cargo flycheck-rust racer rust-mode git-wip-timemachine git-timemachine browse-at-remote use-package better-defaults which-key magit counsel swiper ivy)))
  '(rust-format-on-save t)
  '(rust-rustfmt-bin "rustfmt")
  '(tool-bar-mode nil)
@@ -153,6 +153,10 @@
 (add-to-list 'auto-mode-alist '("\\.nix.in\\'" . nix-mode))
 (require 'nix-drv-mode)
 (add-to-list 'auto-mode-alist '("\\.drv\\'" . nix-drv-mode))
+
+;; cucumber/gherkin feature files
+(require 'feature-mode)
+(add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
 
 (provide 'init)
 ;;; init.el ends here
