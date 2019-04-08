@@ -14,7 +14,7 @@
  '(custom-enabled-themes (quote (solarized-light)))
  '(custom-safe-themes
    (quote
-    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
+    ("a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(inhibit-startup-screen t)
  '(magit-repository-directories (quote (("~" . 2))))
  '(menu-bar-mode nil)
@@ -27,7 +27,7 @@
  '(package-enable-at-startup nil)
  '(package-selected-packages
    (quote
-    (typescript-mode paredit flycheck-joker feature-mode yaml-mode clang-format json-mode nix-mode cider magit-todos smartparens rotate editorconfig solarized-theme smex intero haskell-mode lsp-rust rust-playground yasnippet company-racer ivy-hydra exec-path-from-shell cargo flycheck-rust racer rust-mode git-wip-timemachine git-timemachine browse-at-remote use-package better-defaults which-key magit counsel swiper ivy)))
+    (idris-mode typescript-mode paredit flycheck-joker feature-mode yaml-mode clang-format json-mode nix-mode cider magit-todos smartparens rotate editorconfig solarized-theme smex intero haskell-mode lsp-rust rust-playground yasnippet company-racer ivy-hydra exec-path-from-shell cargo flycheck-rust racer rust-mode git-wip-timemachine git-timemachine browse-at-remote use-package better-defaults which-key magit counsel swiper ivy)))
  '(rust-format-on-save t)
  '(rust-rustfmt-bin "rustfmt")
  '(tool-bar-mode nil)
@@ -42,10 +42,11 @@
 ;; load-path
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
-;; pick the exec path from env
+;; pick the exec path and other envs from shell
 (require 'exec-path-from-shell)
 (when (string= window-system "ns")
-  (exec-path-from-shell-initialize))
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-env "NIX_PATH"))
 
 ;; which-key-mode
 (require 'which-key)
@@ -160,6 +161,7 @@
 
 ;; clojure
 (require 'flycheck-joker)
+(add-hook 'clojure-mode-hook 'flycheck-mode)
 
 (provide 'init)
 ;;; init.el ends here
