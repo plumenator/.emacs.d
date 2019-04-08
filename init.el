@@ -15,6 +15,7 @@
  '(custom-safe-themes
    (quote
     ("a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
+ '(exec-path-from-shell-variables (quote ("PATH" "MANPATH" "NIX_PATH")))
  '(inhibit-startup-screen t)
  '(magit-repository-directories (quote (("~" . 2))))
  '(menu-bar-mode nil)
@@ -45,8 +46,7 @@
 ;; pick the exec path and other envs from shell
 (require 'exec-path-from-shell)
 (when (string= window-system "ns")
-  (exec-path-from-shell-initialize)
-  (exec-path-from-shell-copy-env "NIX_PATH"))
+  (exec-path-from-shell-initialize))
 
 ;; which-key-mode
 (require 'which-key)
