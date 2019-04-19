@@ -109,6 +109,8 @@
  ;; If there is more than one, they won't work right.
  )
 
+(global-flycheck-mode 1)
+
 ;; load-path
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
