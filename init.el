@@ -29,7 +29,7 @@
  '(package-enable-at-startup nil)
  '(package-selected-packages
    (quote
-    (avy flx wgrep amx smart-mode-line-powerline-theme smart-mode-line corral ranger dired-ranger peep-dired idris-mode typescript-mode paredit flycheck-joker feature-mode yaml-mode clang-format json-mode nix-mode cider magit-todos smartparens rotate editorconfig solarized-theme intero haskell-mode lsp-rust rust-playground yasnippet company-racer ivy-hydra exec-path-from-shell cargo flycheck-rust racer rust-mode git-wip-timemachine git-timemachine browse-at-remote use-package better-defaults which-key magit counsel swiper ivy)))
+    (forge avy flx wgrep amx smart-mode-line-powerline-theme smart-mode-line corral ranger dired-ranger peep-dired idris-mode typescript-mode paredit flycheck-joker feature-mode yaml-mode clang-format json-mode nix-mode cider magit-todos smartparens rotate editorconfig solarized-theme intero haskell-mode lsp-rust rust-playground yasnippet company-racer ivy-hydra exec-path-from-shell cargo flycheck-rust racer rust-mode git-wip-timemachine git-timemachine browse-at-remote use-package better-defaults which-key magit counsel swiper ivy)))
  '(rust-format-on-save t)
  '(rust-rustfmt-bin "rustfmt")
  '(sml/mode-width
@@ -139,6 +139,14 @@
 (global-magit-file-mode)
 (require 'magit-todos)
 (magit-todos-mode 1)
+;; Work around for https://github.com/magit/ghub/issues/81
+(when (< emacs-major-version 27)
+  (defvar gnutls-algorithm-priority)
+  (defvar ghub-use-workaround-for-emacs-bug)
+  (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"
+        ghub-use-workaround-for-emacs-bug nil))
+(with-eval-after-load 'magit
+  (require 'forge))
 
 (require 'wgrep)                        ; writable grep buffer
 
