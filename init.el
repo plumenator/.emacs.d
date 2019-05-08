@@ -19,7 +19,6 @@
  '(exec-path-from-shell-variables (quote ("PATH" "MANPATH" "NIX_PATH")))
  '(inhibit-startup-screen t)
  '(magit-repository-directories (quote (("~" . 2))))
- '(menu-bar-mode nil)
  '(ns-alternate-modifier (quote none))
  '(ns-command-modifier (quote meta))
  '(package-archives
