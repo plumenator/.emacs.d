@@ -7,3 +7,6 @@ server/
 places
 smex-items
 recentf
+amx-items
+forge-database.sqlite
+transient/
