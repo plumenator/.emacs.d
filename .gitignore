@@ -10,3 +10,4 @@ recentf
 amx-items
 forge-database.sqlite
 transient/
+.rust-auto-use-cache
