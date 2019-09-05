@@ -108,6 +108,7 @@
  ;; If there is more than one, they won't work right.
  )
 
+(require 'flycheck)
 (global-flycheck-mode 1)
 
 ;; load-path
@@ -225,6 +226,7 @@
 (add-hook 'rust-mode-hook #'racer-mode)
 (add-hook 'racer-mode-hook #'eldoc-mode)
 (add-hook 'racer-mode-hook #'company-mode)
+(require 'flycheck-rust)
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 (add-hook 'rust-mode-hook #'linum-mode)
 
