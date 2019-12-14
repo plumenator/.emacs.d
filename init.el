@@ -281,6 +281,7 @@
                           (add-hook 'before-save-hook 'gofmt-before-save)
                           (local-set-key (kbd "M-.") 'godef-jump)
                           (local-set-key (kbd "M-,") 'pop-tag-mark)
+                          (which-function-mode 1)
                           ))
 (provide 'init)
 ;;; init.el ends here
