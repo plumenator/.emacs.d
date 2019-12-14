@@ -251,6 +251,8 @@
 (add-to-list 'auto-mode-alist '("\\.nix.in\\'" . nix-mode))
 (require 'nix-drv-mode)
 (add-to-list 'auto-mode-alist '("\\.drv\\'" . nix-drv-mode))
+;; provides nix-shell-(de)activate, replaces nix-mode's nix0shell.el
+(require 'nix-shell)
 
 ;; cucumber/gherkin feature files
 (require 'feature-mode)
