@@ -245,6 +245,7 @@
 (require 'clang-format)
 (add-hook 'protobug-mode-hook
           (lambda () (add-hook 'before-save-hook clang-format-buffer nil 'local)))
+
 ;; nix
 (require 'nix-mode)
 (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-mode))
