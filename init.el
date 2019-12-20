@@ -262,7 +262,7 @@
 (require 'flycheck-joker)
 (add-hook 'clojure-mode-hook 'flycheck-mode)
 
-;; corral
+;; quoting and bracketing
 (require 'corral)
 (global-set-key (kbd "M-9") 'corral-parentheses-backward)
 (global-set-key (kbd "M-0") 'corral-parentheses-forward)
