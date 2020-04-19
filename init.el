@@ -222,6 +222,7 @@
                 '(warning . haskell-hlint))))
 (add-hook 'haskell-mode-hook 'flycheck-mode)
 (add-hook 'haskell-mode-hook 'dante-mode)
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 
 ;; rust
 (require 'rust-mode)
