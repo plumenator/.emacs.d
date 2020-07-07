@@ -130,8 +130,6 @@
 (if (fboundp #'save-place-mode)
   (save-place-mode +1)
   (setq-default save-place t))
-;; disable ido-mode (better-defaults enables it, unfortunately)
-(ido-mode -1)
 
 ;; magit
 (require 'magit)
