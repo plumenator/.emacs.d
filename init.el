@@ -113,7 +113,6 @@
 ;; magit
 (require 'magit)
 (global-set-key (kbd "C-x g") 'magit-status)
-(global-magit-file-mode)
 (require 'magit-todos)
 (magit-todos-mode 1)
 ;; Work around for https://github.com/magit/ghub/issues/81
