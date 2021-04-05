@@ -220,7 +220,7 @@
 (require 'protobuf-mode)
 (add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
 (require 'clang-format)
-(add-hook 'protobug-mode-hook
+(add-hook 'protobuf-mode-hook
           (lambda () (add-hook 'before-save-hook clang-format-buffer nil 'local)))
 
 ;; nix
