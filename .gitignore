@@ -12,3 +12,4 @@ forge-database.sqlite
 transient/
 .rust-auto-use-cache
 .lsp-session-v1
+/history
