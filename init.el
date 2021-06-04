@@ -3,7 +3,21 @@
 
 ;;; Code:
 
+;; use-package setup based on https://scalameta.org/metals/docs/editors/emacs.html
+
+(require 'package)
+
+;; Add melpa to your packages repositories
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
 (package-initialize)
+
+;; Install use-package if not already installed
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(require 'use-package)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -20,9 +34,6 @@
  '(magit-repository-directories '(("~" . 2)))
  '(ns-alternate-modifier 'none)
  '(ns-command-modifier 'meta)
- '(package-archives
-   '(("gnu" . "http://elpa.gnu.org/packages/")
-     ("melpa" . "http://melpa.org/packages/")))
  '(package-enable-at-startup nil)
  '(package-selected-packages
    '(cobalt dante go-direx go-eldoc go-mode rustic rust-auto-use flycheck-julia julia-mode julia-repl julia-shell jupyter forge avy flx wgrep amx smart-mode-line-powerline-theme smart-mode-line corral ranger dired-ranger peep-dired idris-mode typescript-mode paredit flycheck-joker feature-mode yaml-mode clang-format json-mode nix-mode cider magit-todos smartparens rotate editorconfig solarized-theme haskell-mode lsp-rust rust-playground yasnippet company-racer ivy-hydra exec-path-from-shell cargo flycheck-rust racer rust-mode git-wip-timemachine git-timemachine browse-at-remote use-package better-defaults which-key magit counsel swiper ivy))
@@ -87,8 +98,8 @@
  ;; If there is more than one, they won't work right.
  )
 
-(require 'flycheck)
-(global-flycheck-mode 1)
+(use-package flycheck
+             :init (global-flycheck-mode))
 
 ;; load-path
 (add-to-list 'load-path "~/.emacs.d/lisp/")
