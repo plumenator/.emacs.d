@@ -340,8 +340,11 @@
 ;;   Please migrate to company-capf.
 (use-package company
              :hook (scala-mode . company-mode)
+                   (purescript-mode . company-mode)
              :config
-             (setq lsp-completion-provider :capf))
+             (setq lsp-completion-provider :capf)
+             :bind
+             ("C-M-i" . company-complete))
 
 ;; Use the Debug Adapter Protocol for running tests and debugging
 (use-package posframe
