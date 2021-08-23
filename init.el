@@ -349,5 +349,18 @@
              (lsp-mode . dap-ui-mode)
              )
 
+;; Purescript
+(use-package psc-ide
+  :config
+  (setq psc-ide-use-npm-bin t)
+  )
+
+(use-package purescript-mode
+  :hook
+  (purescript-mode . psc-ide-mode)
+  (purescript-mode . flycheck-mode)
+  (purescript-mode . turn-on-purescript-indentation)
+  )
+
 (provide 'init)
 ;;; init.el ends here
