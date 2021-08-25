@@ -26,7 +26,7 @@
  ;; If there is more than one, they won't work right.
  '(compilation-scroll-output 'first-error)
  '(counsel-mode t)
- '(exec-path-from-shell-variables '("PATH" "MANPATH" "NIX_PATH"))
+ '(exec-path-from-shell-variables '("PATH" "MANPATH" "NIX_PATH" "NIX_SSL_CERT_FILE"))
  '(inhibit-startup-screen t)
  '(magit-repository-directories '(("~" . 2)))
  '(ns-alternate-modifier 'none)
