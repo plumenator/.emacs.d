@@ -211,6 +211,10 @@
 (add-hook 'haskell-mode-hook 'dante-mode)
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 
+;; fix the flycheck error at point (works with haskell-dante and emacs-lisp
+(use-package attrap
+  :bind (("C-x /" . attrap-attrap)))
+
 ;; rust
 (require 'rust-mode)
 (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
