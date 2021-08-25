@@ -104,7 +104,7 @@
 ;; load-path
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
-;; pick the exec path and other envs from shell
+;; pick the exec path and other envs (customize) from shell
 (require 'exec-path-from-shell)
 (when (string= window-system "ns")
   (exec-path-from-shell-initialize))
