@@ -219,7 +219,8 @@
 
 ;; fix the flycheck error at point (works with haskell-dante and emacs-lisp
 (use-package attrap
-  :bind (("C-x /" . attrap-attrap)))
+  ;; :bind (("C-x /" . attrap-attrap))
+  )
 
 ;; rust
 (require 'rust-mode)
