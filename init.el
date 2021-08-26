@@ -171,6 +171,12 @@
 (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 
+;; find files in project
+(use-package find-file-in-project
+  :config
+  (setq ffip-use-rust-fd t)
+  )
+
 ;; windmove
 (setq-default windmove-wrap-around t)
 (global-set-key (kbd "S-<left>")  'windmove-left)
