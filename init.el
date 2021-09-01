@@ -285,16 +285,14 @@
                           ))
 
 ;; Agda
-(if (executable-find "agda-mode")
-    (progn
-      (load-file (let ((coding-system-for-read 'utf-8))
-                   (shell-command-to-string "agda-mode locate")))
-      (setq auto-mode-alist
-            (append
-             '(("\\.agda\\'" . agda2-mode)
-               ("\\.lagda.md\\'" . agda2-mode))
-             auto-mode-alist)))
-  (message (concat "'" exe "' not found found; please install")))
+(when (executable-find "agda-mode")
+  (load-file (let ((coding-system-for-read 'utf-8))
+               (shell-command-to-string "agda-mode locate")))
+  (setq auto-mode-alist
+        (append
+         '(("\\.agda\\'" . agda2-mode)
+           ("\\.lagda.md\\'" . agda2-mode))
+         auto-mode-alist)))
 
 ;; Scala
 ;; Enable scala-mode for highlighting, indentation and motion commands
