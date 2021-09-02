@@ -209,12 +209,19 @@
   (setq irony-server-w32-pipe-buffer-size (* 64 1024)))
 
 ;; dante-mode for haskell
-(require 'dante)
-(add-hook 'dante-mode-hook
-   '(lambda () (flycheck-add-next-checker 'haskell-dante
-                '(warning . haskell-hlint))))
-(add-hook 'haskell-mode-hook 'flycheck-mode)
-(add-hook 'haskell-mode-hook 'dante-mode)
+(use-package dante
+  :ensure t
+  :after haskell-mode
+  :commands 'dante-mode
+  :init
+  (add-hook 'haskell-mode-hook 'flycheck-mode)
+  ;; OR for flymake support:
+  ;; (add-hook 'haskell-mode-hook 'flymake-mode)
+  ;; (remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)
+  (add-hook 'haskell-mode-hook 'dante-mode)
+  :config
+  (flycheck-add-next-checker 'haskell-dante '(warning . haskell-hlint))
+  )
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 
 ;; fix the flycheck error at point (works with haskell-dante and emacs-lisp
