@@ -19,6 +19,9 @@
 
 (require 'use-package)
 
+(require 'use-package-ensure)
+(setq use-package-always-ensure t)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -105,71 +108,83 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
 ;; pick the exec path and other envs (customize) from shell
-(require 'exec-path-from-shell)
-(when (string= window-system "ns")
-  (exec-path-from-shell-initialize))
+(use-package exec-path-from-shell
+  :init (when (string= window-system "ns")
+  (exec-path-from-shell-initialize)))
+
 
 ;; which-key-mode
-(require 'which-key)
-(which-key-mode 1)
+(use-package which-key
+  :init (which-key-mode 1))
 
-;; https://github.com/technomancy/better-defaults
-(require 'better-defaults)
-;; save-place (as used by better-defaults is now replaced by
-;; save-place-mode
-(if (fboundp #'save-place-mode)
-  (save-place-mode +1)
-  (setq-default save-place t))
+(use-package better-defaults
+  :init
+  ;; save-place (as used by better-defaults is now replaced by
+  ;; save-place-mode
+  (if (fboundp #'save-place-mode)
+      (save-place-mode +1)
+    (setq-default save-place t)))
 
 ;; magit
-(require 'magit)
-(global-set-key (kbd "C-x g") 'magit-status)
-(require 'magit-todos)
-(magit-todos-mode 1)
-;; Work around for https://github.com/magit/ghub/issues/81
-(when (< emacs-major-version 27)
-  (defvar gnutls-algorithm-priority)
-  (defvar ghub-use-workaround-for-emacs-bug)
-  (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"
-        ghub-use-workaround-for-emacs-bug nil))
-(with-eval-after-load 'magit
-  (require 'forge))
+(use-package magit
+  :init
+  (global-set-key (kbd "C-x g") 'magit-status)
+  ;; Work around for https://github.com/magit/ghub/issues/81
+  (when (< emacs-major-version 27)
+    (defvar gnutls-algorithm-priority)
+    (defvar ghub-use-workaround-for-emacs-bug)
+    (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"
+          ghub-use-workaround-for-emacs-bug nil))
+  (with-eval-after-load 'magit
+    (use-package forge))
+  )
+(use-package magit-todos
+  :init
+  (magit-todos-mode 1)
+  )
 
-(require 'wgrep)                        ; writable grep buffer
+(use-package wgrep)                        ; writable grep buffer
 
-(require 'flx)                          ; fuzzy matching
+(use-package flx)                          ; fuzzy matching
 
-(require 'avy)                           ; jump to places
-(avy-setup-default)
-(global-set-key (kbd "C-c C-j") 'avy-resume)
-(global-set-key (kbd "C-:") 'avy-goto-char)
-(global-set-key (kbd "C-'") 'avy-goto-char-2)
-(global-set-key (kbd "M-g f") 'avy-goto-line)
-(global-set-key (kbd "M-g w") 'avy-goto-word-1)
-(global-set-key (kbd "M-g e") 'avy-goto-word-0)
+;; jump to places
+(use-package avy
+  :init
+  (avy-setup-default)
+  (global-set-key (kbd "C-c C-j") 'avy-resume)
+  (global-set-key (kbd "C-:") 'avy-goto-char)
+  (global-set-key (kbd "C-'") 'avy-goto-char-2)
+  (global-set-key (kbd "M-g f") 'avy-goto-line)
+  (global-set-key (kbd "M-g w") 'avy-goto-word-1)
+  (global-set-key (kbd "M-g e") 'avy-goto-word-0)
+  )
 
 ;; ivy-counsel-swiper
-(require 'ivy)
-(ivy-mode 1)
-(setq ivy-use-virtual-buffers t)        ; switch to buffers of files visited in a previous session
-(global-set-key (kbd "C-c C-r") 'ivy-resume)
-(require 'swiper)
-(global-set-key (kbd "C-s") 'counsel-grep-or-swiper)
-(require 'counsel)
-(require 'amx)                     ; last/frequent minibuffer commands
-(global-set-key (kbd "M-x") 'counsel-M-x)
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
-(global-set-key (kbd "<f1> f") 'counsel-describe-function)
-(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-(global-set-key (kbd "<f1> l") 'counsel-find-library)
-(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-(global-set-key (kbd "C-c g") 'counsel-git)
-(global-set-key (kbd "C-c j") 'counsel-git-grep)
-(global-set-key (kbd "C-c k") 'counsel-rg)
-(global-set-key (kbd "C-x l") 'counsel-locate)
-(global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-(define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+(use-package ivy
+  :init
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)        ; switch to buffers of files visited in a previous session
+  (global-set-key (kbd "C-c C-r") 'ivy-resume)
+  )
+(use-package swiper)
+(use-package counsel
+  :init
+  (global-set-key (kbd "C-s") 'counsel-grep-or-swiper)
+  (global-set-key (kbd "M-x") 'counsel-M-x)
+  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+  (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+  (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+  (global-set-key (kbd "<f1> l") 'counsel-find-library)
+  (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+  (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+  (global-set-key (kbd "C-c g") 'counsel-git)
+  (global-set-key (kbd "C-c j") 'counsel-git-grep)
+  (global-set-key (kbd "C-c k") 'counsel-rg)
+  (global-set-key (kbd "C-x l") 'counsel-locate)
+  (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+  )
+(use-package amx)                     ; last/frequent minibuffer commands
 
 ;; find files in project
 (use-package find-file-in-project
@@ -188,6 +203,7 @@
 (winner-mode 1)
 
 ;; irony-mode (c++, libclang)
+;; (use-package irony-mode)
 (add-hook 'c++-mode-hook 'irony-mode)
 (add-hook 'c-mode-hook 'irony-mode)
 
@@ -230,15 +246,19 @@
   )
 
 ;; rust
-(require 'rust-mode)
-(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-(setq company-tooltip-align-annotations t)
-(add-hook 'rust-mode-hook #'racer-mode)
-(add-hook 'racer-mode-hook #'eldoc-mode)
-(add-hook 'racer-mode-hook #'company-mode)
-(require 'flycheck-rust)
-(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
-(add-hook 'rust-mode-hook #'linum-mode)
+(use-package rust-mode
+  :init
+  (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+  (setq company-tooltip-align-annotations t)
+  (add-hook 'rust-mode-hook #'racer-mode)
+  (add-hook 'rust-mode-hook #'linum-mode)
+  (add-hook 'racer-mode-hook #'eldoc-mode)
+  (add-hook 'racer-mode-hook #'company-mode)
+  )
+(use-package flycheck-rust
+  :init
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+  )
 
 ;; enable advanced functions
 (put 'narrow-to-region 'disabled nil)
@@ -246,11 +266,15 @@
 (put 'dired-find-alternate-file 'disabled nil)
 
 ;; protobuf
-(require 'protobuf-mode)
-(add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
-(require 'clang-format)
-(add-hook 'protobuf-mode-hook
-          (lambda () (add-hook 'before-save-hook clang-format-buffer nil 'local)))
+(use-package protobuf-mode
+  :init
+  (add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
+  )
+(use-package clang-format
+  :init
+  (add-hook 'protobuf-mode-hook
+            (lambda () (add-hook 'before-save-hook clang-format-buffer nil 'local)))
+  )
 
 ;; nix
 (require 'nix-mode)
@@ -262,28 +286,36 @@
 (require 'nix-shell)
 
 ;; cucumber/gherkin feature files
-(require 'feature-mode)
-(add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
+(use-package feature-mode
+  :init
+  (add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
+)
 
 ;; clojure
-(require 'flycheck-joker)
-(add-hook 'clojure-mode-hook 'flycheck-mode)
+(use-package flycheck-joker
+  :init
+  (add-hook 'clojure-mode-hook 'flycheck-mode)
+  )
 
 ;; quoting and bracketing
-(require 'corral)
-(global-set-key (kbd "M-9") 'corral-parentheses-backward)
-(global-set-key (kbd "M-0") 'corral-parentheses-forward)
-(global-set-key (kbd "M-[") 'corral-brackets-backward)
-(global-set-key (kbd "M-]") 'corral-brackets-forward)
-;; (global-set-key (kbd "M-{") 'corral-braces-backward)
-;; (global-set-key (kbd "M-}") 'corral-braces-forward)
-(global-set-key (kbd "M-\"") 'corral-double-quotes-backward)
+(use-package corral
+  :init
+  (global-set-key (kbd "M-9") 'corral-parentheses-backward)
+  (global-set-key (kbd "M-0") 'corral-parentheses-forward)
+  (global-set-key (kbd "M-[") 'corral-brackets-backward)
+  (global-set-key (kbd "M-]") 'corral-brackets-forward)
+  ;; (global-set-key (kbd "M-{") 'corral-braces-backward)
+  ;; (global-set-key (kbd "M-}") 'corral-braces-forward)
+  (global-set-key (kbd "M-\"") 'corral-double-quotes-backward)
+  )
 
 ;; golang
-(require 'go-mode)
-(require 'go-eldoc)
-(add-hook 'go-mode-hook 'go-eldoc-setup)
-(require 'go-direx)
+(use-package go-mode)
+(use-package go-eldoc
+  :init
+  (add-hook 'go-mode-hook 'go-eldoc-setup)
+  )
+(use-package go-direx)
 (add-hook 'go-mode-hook (lambda ()
                           (add-hook 'before-save-hook 'gofmt-before-save)
                           (local-set-key (kbd "M-.") 'godef-jump)
@@ -348,19 +380,6 @@
 ;;   to avoid odd behavior with snippets and indentation
 (use-package yasnippet)
 
-;; Use company-capf as a completion provider.
-;;
-;; To Company-lsp users:
-;;   Company-lsp is no longer maintained and has been removed from MELPA.
-;;   Please migrate to company-capf.
-(use-package company
-             :hook (scala-mode . company-mode)
-                   (purescript-mode . company-mode)
-             :config
-             (setq lsp-completion-provider :capf)
-             :bind
-             ("C-M-i" . company-complete))
-
 ;; Use the Debug Adapter Protocol for running tests and debugging
 (use-package posframe
              ;; Posframe is a pop-up tool that must be manually installed for dap-mode
@@ -383,6 +402,20 @@
   (purescript-mode . flycheck-mode)
   (purescript-mode . turn-on-purescript-indentation)
   )
+
+;; Use company-capf as a completion provider.
+;;
+;; To Company-lsp users:
+;;   Company-lsp is no longer maintained and has been removed from MELPA.
+;;   Please migrate to company-capf.
+(use-package company
+             :hook (scala-mode . company-mode)
+                   (purescript-mode . company-mode)
+             :config
+             (setq lsp-completion-provider :capf)
+             :bind
+             ("C-M-i" . company-complete))
+
 
 (provide 'init)
 ;;; init.el ends here
