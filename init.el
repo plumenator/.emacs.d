@@ -403,6 +403,9 @@
   (purescript-mode . turn-on-purescript-indentation)
   )
 
+(use-package nim-mode
+  :mode (("\\.nim.?\\'" . nim-mode)))
+
 ;; Use company-capf as a completion provider.
 ;;
 ;; To Company-lsp users:
