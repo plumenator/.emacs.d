@@ -419,6 +419,11 @@
              :bind
              ("C-M-i" . company-complete))
 
+;; OCaml
+(use-package tuareg)
+(use-package ocamlformat
+  :custom (ocamlformat-enable 'enable-outside-detected-project)
+  :hook (before-save . ocamlformat-before-save))
 
 (provide 'init)
 ;;; init.el ends here
