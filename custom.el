@@ -18,8 +18,7 @@
  '(rust-rustfmt-bin "rustfmt")
  '(sml/mode-width (if (eq (powerline-current-separator) 'arrow) 'right 'full))
  '(sml/pos-id-separator
-   '(""
-     (:propertize " " face powerline-active1)
+   '("" (:propertize " " face powerline-active1)
      (:eval
       (propertize " " 'display
                   (funcall
@@ -30,8 +29,7 @@
                    'powerline-active1 'powerline-active2)))
      (:propertize " " face powerline-active2)))
  '(sml/pos-minor-modes-separator
-   '(""
-     (:propertize " " face powerline-active1)
+   '("" (:propertize " " face powerline-active1)
      (:eval
       (propertize " " 'display
                   (funcall
@@ -42,8 +40,7 @@
                    'powerline-active1 'sml/global)))
      (:propertize " " face sml/global)))
  '(sml/pre-id-separator
-   '(""
-     (:propertize " " face sml/global)
+   '("" (:propertize " " face sml/global)
      (:eval
       (propertize " " 'display
                   (funcall
@@ -54,8 +51,7 @@
                    'sml/global 'powerline-active1)))
      (:propertize " " face powerline-active1)))
  '(sml/pre-minor-modes-separator
-   '(""
-     (:propertize " " face powerline-active2)
+   '("" (:propertize " " face powerline-active2)
      (:eval
       (propertize " " 'display
                   (funcall
