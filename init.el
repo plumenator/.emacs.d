@@ -206,10 +206,8 @@
 ;; undo for windows
 (winner-mode 1)
 
-;; irony-mode (c++, libclang)
-;; (use-package irony-mode)
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'c-mode-hook 'irony-mode)
+;; c++
+(add-hook 'c++-mode-hook #'eglot-ensure)
 
 ;; replace the `completion-at-point' and `complete-symbol' bindings in
 ;; irony-mode's buffers by irony-mode's function
