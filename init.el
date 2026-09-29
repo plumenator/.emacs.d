@@ -3,6 +3,10 @@
 
 ;;; Code:
 
+;; Override macOS Golden Gate deployment target mismatch for libgccjit
+(when (eq system-type 'darwin)
+  (setenv "MACOSX_DEPLOYMENT_TARGET" "27.0"))
+
 ;; use-package setup based on https://scalameta.org/metals/docs/editors/emacs.html
 
 (require 'package)
