@@ -428,5 +428,8 @@
   :custom (ocamlformat-enable 'enable-outside-detected-project)
   :hook (before-save . ocamlformat-before-save))
 
+;; CUDA
+(use-package cuda-mode)
+
 (provide 'init)
 ;;; init.el ends here
