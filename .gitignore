@@ -16,3 +16,7 @@ transient/
 /racket-mode/
 /.dap-breakpoints
 /.cache/
+/eln-cache/
+/places.eld
+/recentf.eld
+/tramp
