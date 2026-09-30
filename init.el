@@ -418,5 +418,8 @@
 ;; CUDA
 (use-package cuda-mode)
 
+;; metal
+(require 'metal-mode)
+
 (provide 'init)
 ;;; init.el ends here
