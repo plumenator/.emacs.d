@@ -102,14 +102,17 @@
  ;; If there is more than one, they won't work right.
  )
 
+;; load-path
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+
 (use-package solarized-theme
   :init (load-theme 'solarized-light t))
 
 (use-package flycheck
-             :init (global-flycheck-mode))
-
-;; load-path
-(add-to-list 'load-path "~/.emacs.d/lisp/")
+  :init
+  (global-flycheck-mode)
+  :custom
+  (flycheck-emacs-lisp-load-path 'inherit))
 
 ;; pick the exec path and other envs (customize) from shell
 (use-package exec-path-from-shell
@@ -215,9 +218,9 @@
 
 ;; dante-mode for haskell
 (use-package dante
-  :ensure t
   :after haskell-mode
   :commands 'dante-mode
+  :functions flycheck-add-next-checker
   :init
   (add-hook 'haskell-mode-hook 'flycheck-mode)
   ;; OR for flymake support:
@@ -236,8 +239,8 @@
 
 ;; rust
 (use-package rust-mode
+  :functions (company-indent-or-complete-common racer-mode linum-mode)
   :init
-  (setq company-tooltip-align-annotations t)
   (add-hook 'rust-mode-hook #'racer-mode)
   (add-hook 'rust-mode-hook #'linum-mode)
   (add-hook 'racer-mode-hook #'eldoc-mode)
@@ -263,7 +266,7 @@
 (use-package clang-format
   :init
   (add-hook 'protobuf-mode-hook
-            (lambda () (add-hook 'before-save-hook clang-format-buffer nil 'local)))
+            (lambda () (add-hook 'before-save-hook #'clang-format-buffer nil 'local)))
   )
 
 ;; nix
@@ -345,6 +348,8 @@
 (use-package lsp-mode
              :hook  (scala-mode . lsp)
              (lsp-mode . lsp-lens-mode)
+             :custom
+             (lsp-prefer-flymake nil)
              :config
              ;; Uncomment following section if you would like to tune lsp-mode performance according to
              ;; https://emacs-lsp.github.io/lsp-mode/page/performance/
@@ -353,7 +358,7 @@
              ;;       (setq lsp-idle-delay 0.500)
              ;;       (setq lsp-log-io nil)
              ;;       (setq lsp-completion-provider :capf)
-             (setq lsp-prefer-flymake nil))
+             )
 
 ;; Add metals backend for lsp-mode
 (use-package lsp-metals)
@@ -404,8 +409,9 @@
 (use-package company
              :hook (scala-mode . company-mode)
                    (purescript-mode . company-mode)
-             :config
-             (setq lsp-completion-provider :capf)
+             :custom
+             (lsp-completion-provider :capf)
+             (company-tooltip-align-annotations t)
              :bind
              ("C-M-i" . company-complete))
 
