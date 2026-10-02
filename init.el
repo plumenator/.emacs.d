@@ -248,10 +248,10 @@
 
 ;; rust
 (use-package rust-mode
-  :functions (company-indent-or-complete-common racer-mode linum-mode)
+  :functions (company-indent-or-complete-common racer-mode)
   :init
   (add-hook 'rust-mode-hook #'racer-mode)
-  (add-hook 'rust-mode-hook #'linum-mode)
+  (add-hook 'rust-mode-hook #'display-line-numbers-mode)
   (add-hook 'racer-mode-hook #'eldoc-mode)
   (add-hook 'racer-mode-hook #'company-mode)
   :config
