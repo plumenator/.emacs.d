@@ -40,7 +40,7 @@
  '(ns-command-modifier 'meta)
  '(package-enable-at-startup nil)
  '(package-selected-packages
-   '(cobalt dante go-eldoc go-mode rustic rust-auto-use flycheck-julia julia-mode julia-repl julia-shell jupyter forge avy flx wgrep amx smart-mode-line-powerline-theme smart-mode-line corral ranger dired-ranger peep-dired idris-mode typescript-mode paredit flycheck-joker feature-mode yaml-mode clang-format json-mode nix-mode cider magit-todos smartparens rotate editorconfig solarized-theme haskell-mode lsp-rust rust-playground yasnippet company-racer ivy-hydra exec-path-from-shell cargo flycheck-rust racer rust-mode git-wip-timemachine git-timemachine browse-at-remote use-package better-defaults which-key magit counsel swiper ivy))
+   '(cobalt dante go-eldoc go-mode rustic rust-auto-use flycheck-julia julia-mode julia-repl julia-shell jupyter forge avy flx wgrep amx smart-mode-line-powerline-theme smart-mode-line corral ranger dired-ranger peep-dired idris-mode typescript-mode paredit flycheck-joker feature-mode yaml-mode clang-format json-mode nix-mode cider magit-todos smartparens rotate editorconfig solarized-theme haskell-mode rust-playground yasnippet company-racer ivy-hydra exec-path-from-shell cargo flycheck-rust racer rust-mode git-wip-timemachine git-timemachine browse-at-remote use-package better-defaults which-key magit counsel swiper ivy))
  '(rust-format-on-save t)
  '(rust-rustfmt-bin "rustfmt")
  '(sml/mode-width (if (eq (powerline-current-separator) 'arrow) 'right 'full))
@@ -353,36 +353,15 @@
              ;; sbt-supershell kills sbt-mode:  https://github.com/hvesalai/emacs-sbt-mode/issues/152
              (setq sbt:program-options '("-Dsbt.supershell=false"))
              )
+;; lsp-lens equivalent: to use Metals' lenses to launch test suites or main methods, run M-x eglot-execute-command
 
-(use-package lsp-mode
-             :hook  (scala-mode . lsp)
-             (lsp-mode . lsp-lens-mode)
-             :custom
-             (lsp-prefer-flymake nil)
-             :config
-             ;; Uncomment following section if you would like to tune lsp-mode performance according to
-             ;; https://emacs-lsp.github.io/lsp-mode/page/performance/
-             ;;       (setq gc-cons-threshold 100000000) ;; 100mb
-             ;;       (setq read-process-output-max (* 1024 1024)) ;; 1mb
-             ;;       (setq lsp-idle-delay 0.500)
-             ;;       (setq lsp-log-io nil)
-             ;;       (setq lsp-completion-provider :capf)
-             )
+;; Elegant floating documentation boxes on demand or hover
+(use-package eldoc-box
+  :hook (eglot-managed-mode . eldoc-box-hover-mode))
 
-;; Add metals backend for lsp-mode
-(use-package lsp-metals)
-
-;; Enable nice rendering of documentation on hover
-;;   Warning: on some systems this package can reduce your emacs responsiveness significally.
-;;   (See: https://emacs-lsp.github.io/lsp-mode/page/performance/)
-;;   In that case you have to not only disable this but also remove from the packages since
-;;   lsp-mode can activate it automatically.
-(use-package lsp-ui)
-
-;; lsp-mode supports snippets, but in order for them to work you need to use yasnippet
-;; If you don't want to use snippets set lsp-enable-snippet to nil in your lsp-mode settings
-;;   to avoid odd behavior with snippets and indentation
-(use-package yasnippet)
+(use-package yasnippet
+  :config
+  (yas-global-mode 1))
 
 ;; Use the Debug Adapter Protocol for running tests and debugging
 (use-package posframe
