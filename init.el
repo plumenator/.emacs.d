@@ -112,7 +112,10 @@
   :init
   (global-flycheck-mode)
   :custom
-  (flycheck-emacs-lisp-load-path 'inherit))
+  (flycheck-emacs-lisp-load-path 'inherit)
+  :config
+  ;; Completely disable native C/C++ syntax checkers so they don't fight Eglot
+  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-gcc)))
 
 ;; pick the exec path and other envs (customize) from shell
 (use-package exec-path-from-shell
@@ -208,6 +211,12 @@
 
 ;; undo for windows
 (winner-mode 1)
+
+;; lsp
+(use-package eglot
+  :config
+  ;; Link Flycheck to Eglot diagnostics natively
+  (add-hook 'eglot-managed-mode-hook #'flycheck-mode))
 
 ;; c++
 (add-hook 'c++-mode-hook #'eglot-ensure)
